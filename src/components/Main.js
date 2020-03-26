@@ -23,38 +23,50 @@ const Main = () => {
       page: 0
     }
   });
-  if (loading) return null;
+  if (loading) return <div className="mt5 mb5 tc pa3">Loading Data...</div>;
   if (error) return `Error ${error}`;
-  console.log(status, type);
+  console.log(data.length, data);
   return (
     <div className="fl w-100">
       <h1 className="f2">Schedule</h1>
-      <div className="ba">
+      <div>
         <div className="w-90 tc ml4">
-          <button className="pa2 w-third" onClick={() => setStatus("Upcoming")}>
+          <button
+            className="pa2 w-third ph3 pv2 input-reset ba b--black bg-transparent pointer f6"
+            onClick={() => setStatus("upcoming")}
+          >
             UPCOMING
           </button>
-          <button className="pa2 w-third" onClick={() => setStatus("live")}>
+          <button
+            className="pa2 w-third ph3 pv2 input-reset ba b--black bg-transparent pointer f6"
+            onClick={() => setStatus("live")}
+          >
             RUNNING
           </button>
           <button
-            className="pa2 w-third"
+            className="pa2 w-third ph3 pv2 input-reset ba b--black bg-transparent pointer f6"
             onClick={() => setStatus("completed")}
           >
             COMPLETED
           </button>
         </div>
         <div className="w-100 ba mt4">
-          <button className="w-third pa2" onClick={() => setType("All")}>
+          <button
+            className="w-third pa2 ph3 pv2 input-reset ba b--black bg-transparent pointer f6"
+            onClick={() => setType("All")}
+          >
             ALL
           </button>
           <button
-            className="w-third pa2"
+            className="w-third pa2 ph3 pv2 input-reset ba b--black bg-transparent pointer f6"
             onClick={() => setType("International")}
           >
             INTERNATIONAL
           </button>
-          <button className="w-third pa2" onClick={() => setType("Domestic")}>
+          <button
+            className="w-third pa2 ph3 pv2 input-reset ba b--black bg-transparent pointer f6"
+            onClick={() => setType("Domestic")}
+          >
             DOMESTIC
           </button>
         </div>
@@ -64,11 +76,15 @@ const Main = () => {
               //   const series = item.seriesName.split(" tour of ");
               return (
                 <div key={i}>
-                  <div>{item.matchID}</div>
-                  <div>{item.seriesName}</div>
+                  <div className="pa3 ma2 bb tc">
+                    {item.matchID} : {item.seriesName}
+                  </div>
                 </div>
               );
             })}
+          {data.schedule.length == 0 && (
+            <div className="mt5 mb5 tc pa3">No Match Found</div>
+          )}
         </div>
       </div>
     </div>
