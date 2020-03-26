@@ -1,6 +1,6 @@
-Cricket task
+<b>Cricket task</b>
 
 Steps to run
 
-npm install
+npm install <br>
 npm run start
